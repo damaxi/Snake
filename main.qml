@@ -2,7 +2,7 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Controls.Styles 1.4
-import "controls" as Controls
+// import "controls" as Controls
 
 ApplicationWindow {
     visible: true
@@ -13,7 +13,7 @@ ApplicationWindow {
     ColumnLayout {
         anchors.centerIn: parent
         spacing: 20
-        Controls.Button {
+        Button {
             text: qsTr("Start Game")
         }
         Button {
