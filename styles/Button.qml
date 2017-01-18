@@ -10,6 +10,7 @@ T.Button {
                              contentItem.implicitHeight + topPadding + bottomPadding)
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
+    font { pixelSize: 25; family: "Lucida Console"; }
     padding: 6
     hoverEnabled: true
     leftPadding: padding + 2
@@ -35,9 +36,9 @@ T.Button {
         opacity: enabled ? 1 : 0.3
         visible: !control.flat || control.down || control.checked || control.highlighted
         color: control.checked || control.highlighted || control.hovered ?
-            (control.visualFocus ? (control.down ? "#599bff" : "#0066ff") : (control.down ? "#585a5c" : "#353637")) :
-            (control.visualFocus ? (control.down ? "#cce0ff" : "#f0f6ff") : (control.down ? "#d0d0d0" : "#e0e0e0"))
-        border.color: "#0066ff"
+            (control.visualFocus ? (control.down ? "#599bff" : "#0066ff") : (control.down ? "#26C6DA" : "#00838F")) :
+            (control.visualFocus ? (control.down ? "#cce0ff" : "#f0f6ff") : (control.down ? "#d0d0d0" : "#80DEEA"))
+        border.color: "#006064"
         border.width: control.visualFocus ? 2 : 0
     }
     //! [background]
