@@ -19,7 +19,11 @@ ApplicationWindow {
 
     StackView {
         id: stackView
+        focus: true
         initialItem: Views.MenuView {}
         anchors.fill: parent
+        onCurrentItemChanged: {
+            currentItem.focus = true
+        }
     }
 }
