@@ -15,6 +15,7 @@ Frame {
         anchors.centerIn: parent
         Button {
             text: qsTr("Start Game")
+            onClicked: stackView.replace("qrc:/views/GameView.qml")
             Layout.fillWidth: true
         }
         Button {

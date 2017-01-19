@@ -4,5 +4,6 @@
         <file>qtquickcontrols2.conf</file>
         <file>styles/Button.qml</file>
         <file>views/MenuView.qml</file>
+        <file>views/GameView.qml</file>
     </qresource>
 </RCC>

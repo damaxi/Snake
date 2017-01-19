@@ -6,8 +6,8 @@ import "views" as Views
 
 ApplicationWindow {
     visible: true
-    width: 480
-    height: 480
+    width: 500
+    height: 500
     title: qsTr("Snake")
 
     background: Rectangle {
@@ -18,8 +18,8 @@ ApplicationWindow {
     }
 
     StackView {
-        id: stack
-        initialItem: Views.MenuView { }
+        id: stackView
+        initialItem: Views.MenuView {}
         anchors.fill: parent
     }
 }
