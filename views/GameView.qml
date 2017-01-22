@@ -15,29 +15,59 @@ GridLayout {
         property int head: model / 2
         property var body: []
         property int move: 1
+        property int food: 0
+        property int foodEaten: 0
         function redraw() {
             head += move
             body.unshift(head)
-            checkColission()
+            if (checkColission())
+                return
             itemAt(head).snake = true
-            itemAt(body.pop()).snake = false
+            if (!checkIfFood())
+                itemAt(body.pop()).snake = false
         }
         function randFood() {
-
+            var foodPosition = Math.floor(Math.random() * 626)
+            while (true) {
+                for (var snakeBodyPosition in body) {
+                    if (foodPosition == snakeBodyPosition) {
+                        foodPosition = Math.floor(Math.random() * 626)
+                        continue
+                    }
+                }
+                return foodPosition
+            }
+        }
+        function setNewFood() {
+            food = randFood()
+            cells.itemAt(food).food = true
         }
         function checkColission() {
             if (head < 0 || head > 625 ||
-                    (head % 25 == 1 && head - body[1] == 1) ||
-                    (head % 25 == 24 && head - body[1] == -1)
+                    ( (head + 1) % 25 == 1 && (head + 1) - (body[1] + 1) == 1) ||
+                    ( (head - 1) % 25 == 24 && (head - 1) - (body[1] - 1) == -1)
                ) {
                 gameTick.stop()
-                console.log("Game Over")
+                stackView.replace(Qt.resolvedUrl("qrc:/views/GameOverView.qml", {"foodEaten": foodEaten}))
+                return true
             }
+            return false
+        }
+        function checkIfFood() {
+            if (head == food) {
+                cells.itemAt(food).food = false
+                ++foodEaten
+                setNewFood()
+                console.log(food)
+                console.log(foodEaten)
+                return true
+            }
+            return false
         }
         Rectangle {
             property bool snake: false
             property bool food: false
-            color: snake ? "green" : "white"
+            color: snake ? "green" : (food ? "red" : "white")
             width: 20
             height: width
             transformOrigin: Item.Center
@@ -48,12 +78,15 @@ GridLayout {
     }
     Timer {
         id: gameTick
-        interval: 500; running: false; repeat: true; triggeredOnStart: true
+        interval: 100; running: false; repeat: true; triggeredOnStart: true
         onRunningChanged: {
             // create snake in the middle
-            for (var i = 0; i < cells.length; i++) {
-                cells.itemAt(cells.head - i).snake = true
-                cells.body.push(cells.head - i)
+            if (gameTick.running) {
+                for (var i = 0; i < cells.length; i++) {
+                    cells.itemAt(cells.head - i).snake = true
+                    cells.body.push(cells.head - i)
+                }
+                cells.setNewFood()
             }
         }
         onTriggered: {
