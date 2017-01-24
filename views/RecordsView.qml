@@ -13,24 +13,28 @@ Frame {
         radius: 2
     }
     ColumnLayout {
-        anchors.centerIn: parent
+        anchors.fill: parent
         spacing: 10
         Label {
-            text: qsTr("Game Over")
+            id: recordLabel
+            text: qsTr("Records:")
             color: "white"
             font { bold: true; pixelSize: 30 }
-            Layout.fillWidth: true
-        }
-        Label {
-            text: qsTr("You eat %1 food").arg(gameOverView.foodEaten)
-            color: "orange"
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
-            font { pixelSize: 24 }
             Layout.fillWidth: true
+            Layout.alignment: Qt.AlignTop
         }
-        Component.onCompleted: {
-            console.log("Finished")
+        Repeater {
+            model: mainWindow.records
+            Label {
+                text: modelData
+                color: "orange"
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                font { pixelSize: 24 }
+                Layout.fillWidth: true
+            }
         }
     }
 }

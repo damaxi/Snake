@@ -48,7 +48,8 @@ GridLayout {
                     ( (head - 1) % 25 == 24 && (head - 1) - (body[1] - 1) == -1)
                ) {
                 gameTick.stop()
-                stackView.replace(Qt.resolvedUrl("qrc:/views/GameOverView.qml", {"foodEaten": foodEaten}))
+                stackView.replace(Qt.resolvedUrl("qrc:/views/GameOverView.qml"), {"foodEaten": foodEaten})
+                mainWindow.records.push(foodEaten)
                 return true
             }
             return false
@@ -58,8 +59,6 @@ GridLayout {
                 cells.itemAt(food).food = false
                 ++foodEaten
                 setNewFood()
-                console.log(food)
-                console.log(foodEaten)
                 return true
             }
             return false

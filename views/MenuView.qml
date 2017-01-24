@@ -21,10 +21,11 @@ Frame {
         Button {
             text: qsTr("Records")
             Layout.fillWidth: true
+            onClicked: stackView.replace(Qt.resolvedUrl("qrc:/views/RecordsView.qml"))
         }
         Button {
             text: qsTr("Exit")
             Layout.fillWidth: true
-        }
+        }        
     }
 }

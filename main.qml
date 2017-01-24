@@ -5,10 +5,12 @@ import QtQuick.Controls.Styles 1.4
 import "views" as Views
 
 ApplicationWindow {
+    id: mainWindow
     visible: true
     width: 500
     height: 500
     title: qsTr("Snake")
+    property var records: []
 
     background: Rectangle {
         gradient: Gradient {

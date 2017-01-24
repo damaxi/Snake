@@ -6,5 +6,6 @@
         <file>views/MenuView.qml</file>
         <file>views/GameView.qml</file>
         <file>views/GameOverView.qml</file>
+        <file>views/RecordsView.qml</file>
     </qresource>
 </RCC>
